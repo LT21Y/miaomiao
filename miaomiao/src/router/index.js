@@ -8,15 +8,13 @@ const my  = ()=>import("@/components/my")
 const movie  = ()=>import("@/components/movie")
 const list1  = ()=>import("@/components/list1")
 const list2  = ()=>import("@/components/list2")
+const register = ()=>import("@/components/register")
 
 export const routes = [
   {
     path: "/", 
     component: Home,
     redirect:'/list1',
-    meta: {
-      needLogin: true //需要加校检判断的路由
-    },
     children:[
       {
       path: "/list1",
@@ -30,7 +28,10 @@ export const routes = [
   },
   {
     path: "/my", 
-    component:my
+    component:my,
+    meta: {
+      needLogin: true //需要加校检判断的路由
+    },
   },
   {
     path: "/movie", 
@@ -40,7 +41,10 @@ export const routes = [
     path: "/Login", 
     component:Login
   },
-
+  {
+    path: "/register", 
+    component:register
+  },
  
 ]
 

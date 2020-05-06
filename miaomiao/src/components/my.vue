@@ -1,6 +1,7 @@
 <template>
   <div class="my">
-  我的
+    当前用户：{{username}}
+    <van-button @click="close" plain type="info">退出</van-button>
   </div>
 </template>
 
@@ -8,10 +9,18 @@
 export default {
   data(){
     return{
-
+      username:''
+    }
+  },
+  created(){
+    this.username = localStorage.getItem("token")
+  },
+  methods:{
+    close(){
+      localStorage.clear("token")
+      this.$router.push("/Login")
     }
   }
-  
 }
 </script>
 

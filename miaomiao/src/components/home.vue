@@ -9,7 +9,7 @@
   <div class="tab-center">
    <ul>
         <li v-for="(item,index) in list" :key="item.id" :class="{active:num==index}" @click="getNum(index)">
-         <router-link :to="`/list${index+1}`">{{item}}</router-link>
+         <router-link  :to="`/list${index+1}`">{{item}}</router-link>
         </li>
       </ul>
   </div>
@@ -19,7 +19,9 @@
    </div>
 
    <div class="view">
+     <keep-alive>
      <router-view></router-view>
+     </keep-alive>
    </div>
   </div>
 </template>
@@ -64,8 +66,8 @@ export default {
   font-size: 30px;
   display: flex;
   justify-content: space-between;
-  /* justify-items: center; */
   align-items: center;
+  border-bottom: 1px solid #ccc;
 }
 .tab-left{
   width: 20%;
@@ -76,8 +78,8 @@ export default {
 }
 .tab-center{
   width: 70%;
-  height: 46px;
-  line-height: 46px;
+  height: 45px;
+  line-height: 45px;
   font-size: 15px;
 }
 .tab-center ul li{

@@ -4,7 +4,9 @@
       <span class="title">喵喵电影</span>
     </div>
     <div class="view">
+      <keep-alive>
       <router-view></router-view>
+      </keep-alive>
     </div>
     <div class="tabbar">
     <van-tabbar v-model="active" active-color="#07c160" inactive-color="#ccc">
@@ -29,6 +31,9 @@ export default {
 </script>
 
 <style>
+html body{
+  margin-bottom: 50px;
+}
 .top {
   background-color: #07c160;
   width: 100%;

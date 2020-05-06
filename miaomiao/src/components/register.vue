@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="reg">
   <van-cell-group>
   <van-field
     v-model="username"
@@ -9,8 +9,7 @@
   />
  <van-field required v-model="password" type="password" placeholder="请输入密码" label="密码" />
 </van-cell-group>
-  <van-button @click="login" size="large" plain type="primary">点击登录</van-button>
-  <van-button @click="toreg" size="large" plain type="primary">前往注册</van-button>
+  <van-button @click="reg" size="large" plain type="primary">立即注册</van-button>
   </div>
 </template>
 
@@ -23,26 +22,27 @@ export default {
     }
   },
   methods:{
-    login(){
+   reg(){
       this.$http.get("http://localhost:3000/user").then((res)=>{
         console.log(res)
         let list = res.data
         for (let i = 0; i < list.length; i++) {
-          if(`${this.username}${this.password}` == `${list[i].username}${list[i].password}`){
-              console.log("成功")
+          if(list[i].username == this.username){
+              console.log("用户名已存在")
               list = ""
-              localStorage.setItem("token",this.username)
-              this.$router.push("/my")
           }else{
-              console.log("失败")
+              this.$http.post("http://localhost:3000/user",{
+                username:this.username,
+                password:this.password
+              }).then((r)=>{
+                console.log("注册成功"+r.data)
+                this.$router.push("/Login")
+              })
           }
           
         }
         
       })
-    },
-    toreg(){
-      this.$router.push("/register")
     }
   }
   
